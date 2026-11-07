@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Please **do not open a public issue**. Email **security@hainiva.com** with a
+Please **do not open a public issue**. Email **security@epacific.com.vn** with a
 description, the affected version and steps to reproduce. We acknowledge
 reports within 2 business days and keep you informed until a fix ships.
 

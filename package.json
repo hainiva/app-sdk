@@ -1,11 +1,27 @@
 {
   "name": "@hainiva/app-sdk",
-  "version": "0.1.0",
-  "description": "Connect your mobile app's users to HAINIVA: chat over WebSocket and voice calls over LiveKit (App channel). Zero dependencies, works in React Native, browsers and Node.",
-  "keywords": ["hainiva", "contact-center", "customer-support", "live-chat", "in-app-chat", "voip", "webrtc", "livekit", "react-native", "websocket"],
+  "version": "0.1.1",
+  "description": "Connect your mobile app's users to HAINIVA: chat over WebSocket and voice calls over HAINIVA AICC (App channel). Zero dependencies, works in React Native, browsers and Node.",
+  "keywords": [
+    "hainiva",
+    "contact-center",
+    "customer-support",
+    "live-chat",
+    "in-app-chat",
+    "voip",
+    "webrtc",
+    "livekit",
+    "react-native",
+    "websocket"
+  ],
   "homepage": "https://github.com/hainiva/app-sdk#readme",
-  "repository": { "type": "git", "url": "git+https://github.com/hainiva/app-sdk.git" },
-  "bugs": { "url": "https://github.com/hainiva/app-sdk/issues" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hainiva/app-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hainiva/app-sdk/issues"
+  },
   "license": "MIT",
   "author": "HAINIVA (https://hainiva.com)",
   "type": "module",
@@ -14,21 +30,37 @@
   "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
-      "import": { "types": "./dist/esm/index.d.ts", "default": "./dist/esm/index.js" },
-      "require": { "types": "./dist/cjs/index.d.cts", "default": "./dist/cjs/index.cjs" }
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
     },
     "./package.json": "./package.json"
   },
   "sideEffects": false,
-  "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
-  "engines": { "node": ">=22" },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "node scripts/build.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run",
     "prepublishOnly": "npm run typecheck && npm test && npm run build"
   },
-  "publishConfig": { "access": "public", "provenance": true },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "devDependencies": {
     "@types/node": "^20.14.0",
     "typescript": "^5.5.2",

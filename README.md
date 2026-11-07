@@ -5,7 +5,7 @@
 <h1 align="center">@hainiva/app-sdk</h1>
 
 <p align="center">
-  Connect your mobile app's users to a HAINIVA organisation: <b>chat over WebSocket</b> and <b>voice calls over LiveKit</b>, through the App channel.
+  Connect your mobile app's users to a HAINIVA organisation: <b>chat over WebSocket</b> and <b>voice calls over HAINIVA AICC</b>, through the App channel.
 </p>
 
 <p align="center">
