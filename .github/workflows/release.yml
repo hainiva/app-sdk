@@ -1,0 +1,27 @@
+# Publishes to npm when a GitHub Release is published (tag vX.Y.Z).
+# Uses npm trusted publishing (OIDC): no npm token is stored anywhere, and
+# every version carries a provenance statement linking it to this workflow.
+name: Release
+on:
+  release: { types: [published] }
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, registry-url: "https://registry.npmjs.org" }
+      - run: npm install -g npm@latest
+      - name: Tag matches package.json
+        run: test "v$(node -p 'require(`./package.json`).version')" = "${GITHUB_REF_NAME}"
+      - run: npm install --no-audit --no-fund
+      - run: npm run typecheck && npm test && npm run build
+      - run: npm publish --provenance --access public
+        env:
+          # Only for the very first release, before trusted publishing can be
+          # turned on for the package. Delete the secret right after.
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
