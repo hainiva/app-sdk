@@ -1,0 +1,12 @@
+{
+  "name": "hainiva-app-channel-web-demo",
+  "private": true,
+  "description": "Phone-style demo app and partner backend for the HAINIVA App channel",
+  "type": "module",
+  "scripts": { "start": "node server.mjs" },
+  "dependencies": {
+    "@hainiva/app-sdk": "^0.1.1",
+    "livekit-client": "2.19.2"
+  },
+  "engines": { "node": ">=20.6" }
+}

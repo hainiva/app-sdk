@@ -87,11 +87,21 @@ await room.connect(call.livekit.url, call.livekit.token);
 await room.localParticipant.setMicrophoneEnabled(true);
 ```
 
-Use CallKit (iOS) and ConnectionService + a foreground service (Android) so calls survive the background.
+- **Mute:** `room.localParticipant.setMicrophoneEnabled(false)`.
+- **Hang up:** `room.disconnect()`. Leaving the room *is* the hang-up: HAINIVA ends the call as the caller's about 12 seconds later. Rejoining within that time (a network switch, a reconnect) keeps the call.
+- **Staff hung up:** the room closes and you get `RoomEvent.Disconnected`; when the other side leaves first you also see `RoomEvent.ParticipantDisconnected`.
+- **Ringing:** until someone answers you are alone in the room, so play your own ring-back. Vietnamese ring-back is 425 Hz, 1 s on and 4 s off.
+- **Background:** use CallKit (iOS) and ConnectionService + a foreground service (Android) so calls survive the background, and declare the microphone permission (`NSMicrophoneUsageDescription`, `RECORD_AUDIO`).
+
+The call is recorded and logged in HAINIVA like any other call to that destination.
 
 ## 4. Push notifications
 
 The socket reaches an open app only. Subscribe a webhook to `app.message.outbound`; it carries your user id (`userId`), the conversation and a preview — send your own FCM/APNs push.
+
+## Try it: the web demo
+
+[`examples/web-demo`](examples/web-demo) is a phone-style app plus its backend, in about 400 lines: sign-in, directory with search, chat and voice calls. It comes in three looks (citizen → ward, customer → store, client → branch). Point it at your App channel and run `node server.mjs`.
 
 ## Errors
 
