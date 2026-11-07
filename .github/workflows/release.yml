@@ -15,13 +15,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 24, registry-url: "https://registry.npmjs.org" }
-      - run: npm install -g npm@latest
+      - run: npm install -g npm@latest && npm --version
       - name: Tag matches package.json
         run: test "v$(node -p 'require(`./package.json`).version')" = "${GITHUB_REF_NAME}"
       - run: npm install --no-audit --no-fund
       - run: npm run typecheck && npm test && npm run build
-      - run: npm publish --provenance --access public
-        env:
-          # Only for the very first release, before trusted publishing can be
-          # turned on for the package. Delete the secret right after.
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Trusted publishing: npm swaps this job's OIDC identity for a one-time
+      # publish token. Verbose so a refused exchange says why in the log.
+      - run: npm publish --provenance --access public --loglevel verbose
