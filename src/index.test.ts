@@ -29,6 +29,10 @@ class FakeWS {
   push(f: Record<string, unknown>) { this.onmessage?.({ data: JSON.stringify(f) }); }
 }
 const tick = (ms = 5) => new Promise((r) => setTimeout(r, ms));
+/** Wait for a condition, not a fixed time: a busy CI box can take longer than any tick to open a socket. */
+async function until(ok: () => unknown, ms = 2000) {
+  for (const end = Date.now() + ms; !ok(); await tick(1)) if (Date.now() > end) throw new Error("timed out");
+}
 
 describe("session", () => {
   it("signs in with the partner's assertion and keeps the session", async () => {
@@ -87,7 +91,7 @@ describe("socket", () => {
     await hv.signIn();
     const got: string[] = [];
     hv.subscribe("conv-1", { message: (m) => got.push(m.id) });
-    await tick();
+    await until(() => FakeWS.all[0]?.sent.length);
     const ws1 = FakeWS.all[0]!;
     expect(ws1.url).toBe("ws://x/app/v1/ws");
     expect(ws1.sent[0]).toMatchObject({ type: "auth", token: "acc1" });
@@ -98,7 +102,7 @@ describe("socket", () => {
     expect(got).toEqual(["m1"]);
 
     ws1.close(1006);                       // the network drops
-    await tick(20);
+    await until(() => FakeWS.all[1]?.sent.length);
     const ws2 = FakeWS.all[1]!;
     expect(ws2).toBeDefined();
     ws2.push({ type: "ready", seq: 1 });
@@ -111,7 +115,7 @@ describe("socket", () => {
     const { f } = fakeFetch({ "POST /sessions": () => [201, session()] });
     const hv = new HainivaApp({ tenantId: "t", channelId: "ch", baseUrl: "https://gw", getAssertion: async () => "A", fetch: f, WebSocket: FakeWS as unknown as typeof WebSocket });
     await hv.signIn();
-    hv.connect(); await tick();
+    hv.connect(); await until(() => FakeWS.all[0]?.sent.length);
     const ws = FakeWS.all[0]!; ws.push({ type: "ready" });
     const p = hv.send("conv-1", "xin chào", "client-0001");
     const frame = ws.sent.find((x) => x["type"] === "message.send")!;

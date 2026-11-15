@@ -1,7 +1,7 @@
 {
   "name": "@hainiva/app-sdk",
-  "version": "0.1.1",
-  "description": "Connect your mobile app's users to HAINIVA: chat over WebSocket and voice calls over HAINIVA AICC (App channel). Zero dependencies, works in React Native, browsers and Node.",
+  "version": "0.1.2",
+  "description": "Connect your mobile app's users to HAINIVA: chat over WebSocket and voice calls over HAINIVA (App channel). Zero dependencies, works in React Native, browsers and Node.",
   "keywords": [
     "hainiva",
     "contact-center",

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": { "start": "node server.mjs" },
   "dependencies": {
-    "@hainiva/app-sdk": "^0.1.1",
+    "@hainiva/app-sdk": "^0.1.2",
     "livekit-client": "2.19.2"
   },
   "engines": { "node": ">=20.6" }

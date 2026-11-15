@@ -5,7 +5,7 @@
 <h1 align="center">@hainiva/app-sdk</h1>
 
 <p align="center">
-  Connect your mobile app's users to a HAINIVA organisation: <b>chat over WebSocket</b> and <b>voice calls over HAINIVA AICC</b>, through the App channel.
+  Connect your mobile app's users to a HAINIVA organisation: <b>chat over WebSocket</b> and <b>voice calls over HAINIVA</b>, through the App channel.
 </p>
 
 <p align="center">
@@ -30,10 +30,7 @@ npm install @hainiva/app-sdk
 
 You need, from the HAINIVA organisation's admin (**Admin → Channels → Mobile App**): the **Organisation ID**, the **Channel ID** and the channel's **signing secret** (for your backend only).
 
-| Environment | `baseUrl` |
-|---|---|
-| Production | `https://channel.hainiva.com` |
-| Staging (testing) | `https://channel.stg.hainiva.com` |
+`baseUrl` is `https://channel.hainiva.com`.
 
 ## 1. Your backend signs the user in
 
@@ -120,6 +117,13 @@ Ships ESM and CommonJS with TypeScript types.
 ## Versioning
 
 [Semantic Versioning](https://semver.org/). While the version is `0.x`, a minor release may change the API; read the [changelog](CHANGELOG.md) before upgrading. The wire protocol is versioned separately (`/app/v1`) and only grows within v1.
+
+## Documentation
+
+- [App channel SDK](https://hainiva.com/en/developers/docs/app-channel-sdk) in the [HAINIVA developer docs](https://hainiva.com/en/developers/docs) — the full guide: assertions, chat, calls, push and the wire protocol.
+- [API reference → App channel](https://api.hainiva.com/docs/#tag/app-channel).
+- [Troubleshooting](https://hainiva.com/en/developers/docs/troubleshooting).
+- Building a staff (agent) app instead? See [`@hainiva/agent-sdk`](https://github.com/hainiva/agent-sdk) and [`@hainiva/react-native-call`](https://github.com/hainiva/react-native-call).
 
 ## Support and security
 

@@ -5,6 +5,10 @@ All notable changes to `@hainiva/app-sdk` are listed here. The format follows
 [Semantic Versioning](https://semver.org/). While the version is `0.x`, a minor
 release (`0.2.0`) may change the API; a patch release (`0.1.1`) never does.
 
+## [0.1.2] - 2026-11-15
+
+- README: the product is named HAINIVA; only the production `baseUrl` is shown; new Documentation section linking the developer docs, the API reference and the sibling SDKs. No code changes.
+
 ## [0.1.1] - 2026-11-07
 
 - Package description: voice calls run over HAINIVA AICC.
@@ -22,5 +26,6 @@ First public release.
 - Closed destinations: `HainivaError` `destination_closed`, and `leaveMessage: true`.
 - ESM and CommonJS builds with TypeScript types. No runtime dependencies.
 
+[0.1.2]: https://github.com/hainiva/app-sdk/releases/tag/v0.1.2
 [0.1.1]: https://github.com/hainiva/app-sdk/releases/tag/v0.1.1
 [0.1.0]: https://github.com/hainiva/app-sdk/releases/tag/v0.1.0

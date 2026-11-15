@@ -1,5 +1,5 @@
 // A terminal "app": sign in, pick a destination, chat. Node 22+ (global WebSocket).
-//   HAINIVA_BASE=https://channel.stg.hainiva.com HAINIVA_TENANT=… HAINIVA_CHANNEL_ID=… HAINIVA_APP_SECRET=… \
+//   HAINIVA_BASE=https://channel.hainiva.com HAINIVA_TENANT=… HAINIVA_CHANNEL_ID=… HAINIVA_APP_SECRET=… \
 //     node node-client.mjs "vinh loc"
 import { createInterface } from "node:readline/promises";
 import { HainivaApp } from "../dist/index.js";
